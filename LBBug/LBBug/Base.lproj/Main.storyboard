@@ -679,17 +679,21 @@
                 <customObject id="YLy-65-1bz" customClass="NSFontManager"/>
                 <customObject id="Ady-hI-5gd" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="75" y="0.0"/>
+            <point key="canvasLocation" x="28" y="-221"/>
         </scene>
         <!--Window Controller-->
         <scene sceneID="R2V-B0-nI4">
             <objects>
                 <windowController id="B8D-0N-5wS" sceneMemberID="viewController">
-                    <window key="window" title="Window" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" visibleAtLaunch="NO" animationBehavior="default" id="IQv-IB-iLA">
+                    <window key="window" title="LBBug" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" visibleAtLaunch="NO" animationBehavior="default" id="IQv-IB-iLA">
                         <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
                         <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
-                        <rect key="contentRect" x="196" y="240" width="480" height="270"/>
+                        <rect key="contentRect" x="196" y="240" width="896" height="504"/>
                         <rect key="screenRect" x="0.0" y="0.0" width="1680" height="1027"/>
+                        <value key="minSize" type="size" width="448" height="252"/>
+                        <value key="maxSize" type="size" width="4480" height="2520"/>
+                        <value key="minFullScreenContentSize" type="size" width="2240" height="1260"/>
+                        <value key="maxFullScreenContentSize" type="size" width="4480" height="2520"/>
                         <connections>
                             <outlet property="delegate" destination="B8D-0N-5wS" id="98r-iN-zZc"/>
                         </connections>
@@ -709,11 +713,62 @@
                     <view key="view" id="m2S-Jp-Qdl">
                         <rect key="frame" x="0.0" y="0.0" width="480" height="270"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <subviews>
+                            <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="5cw-TA-a35">
+                                <rect key="frame" x="450" y="9" width="20" height="22"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="20" id="2nw-Su-Ya4"/>
+                                    <constraint firstAttribute="width" constant="20" id="942-y5-lUK"/>
+                                </constraints>
+                                <buttonCell key="cell" type="smallSquare" bezelStyle="smallSquare" image="icon_delete" imagePosition="overlaps" alignment="center" lineBreakMode="truncatingTail" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="tPV-N5-ieE">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                            </button>
+                            <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="13Z-aL-NpU">
+                                <rect key="frame" x="430" y="9" width="20" height="22"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="20" id="KtJ-z5-tlN"/>
+                                    <constraint firstAttribute="height" constant="20" id="usg-gJ-KKa"/>
+                                </constraints>
+                                <buttonCell key="cell" type="smallSquare" bezelStyle="smallSquare" image="icon_add" imagePosition="overlaps" alignment="center" lineBreakMode="truncatingTail" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="arV-Ve-ejU">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                            </button>
+                            <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="dot-Te-Noi">
+                                <rect key="frame" x="376" y="33" width="101" height="32"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="87" id="4jc-4c-o8h"/>
+                                    <constraint firstAttribute="height" constant="20" id="kZJ-py-NgV"/>
+                                </constraints>
+                                <buttonCell key="cell" type="push" title="创建新窗口" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="iwq-9p-bPl">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <color key="bezelColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <connections>
+                                    <action selector="addbuttonEvent:" target="XfG-lQ-9wD" id="2Jq-z9-Pzs"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="5cw-TA-a35" secondAttribute="trailing" constant="10" id="gxg-fa-2WY"/>
+                            <constraint firstAttribute="bottom" secondItem="5cw-TA-a35" secondAttribute="bottom" constant="10" id="jLh-XC-x3i"/>
+                            <constraint firstItem="5cw-TA-a35" firstAttribute="leading" secondItem="13Z-aL-NpU" secondAttribute="trailing" id="lhD-CR-2Fx"/>
+                            <constraint firstItem="5cw-TA-a35" firstAttribute="top" secondItem="dot-Te-Noi" secondAttribute="bottom" constant="10" id="t5g-Gx-4Ti"/>
+                            <constraint firstItem="5cw-TA-a35" firstAttribute="trailing" secondItem="dot-Te-Noi" secondAttribute="trailing" id="wGC-Vg-2tX"/>
+                            <constraint firstItem="5cw-TA-a35" firstAttribute="bottom" secondItem="13Z-aL-NpU" secondAttribute="bottom" id="xoJ-WO-uGB"/>
+                        </constraints>
                     </view>
                 </viewController>
                 <customObject id="rPt-NT-nkU" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="75" y="655"/>
+            <point key="canvasLocation" x="75" y="843"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="icon_add" width="48" height="48"/>
+        <image name="icon_delete" width="48" height="48"/>
+    </resources>
 </document>

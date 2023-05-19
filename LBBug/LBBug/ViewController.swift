@@ -11,17 +11,35 @@ class ViewController: NSViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.view.window?.makeKeyAndOrderFront(self)
         self.view.wantsLayer = true
-        self.view.layer?.backgroundColor = NSColor.red.cgColor
+        self.view.layer?.backgroundColor = NSColor.white.cgColor
         setupUI()
     }
     func setupUI() {
-        self.view.window?.backgroundColor = .white
         self.view.addSubview(self.scrollView)
         self.scrollView.snp.makeConstraints { make in
-            make.top.left.bottom.equalToSuperview()
+            make.top.equalTo(10)
+            make.left.equalTo(10)
             make.right.equalTo(self.view.snp.centerX)
+            make.bottom.equalTo(-50)
         }
+        self.view.addSubview(self.deleteButton)
+        self.deleteButton.snp.makeConstraints { make in
+            make.top.equalTo(self.scrollView.snp.bottom).offset(5)
+            make.right.equalTo(self.scrollView)
+            make.width.equalTo(30)
+            make.height.equalTo(30)
+        }
+        self.view.addSubview(self.addButton)
+        self.addButton.snp.makeConstraints { make in
+            make.top.equalTo(self.deleteButton)
+            make.right.equalTo(self.deleteButton.snp.left).offset(-5)
+            make.width.equalTo(30)
+            make.height.equalTo(30)
+        }
+        
+        
     }
     override var representedObject: Any? {
         didSet {
@@ -29,6 +47,43 @@ class ViewController: NSViewController {
         }
     }
 
+    @IBAction func addbuttonEvent(_ sender: Any) {
+        //窗口显示
+        self.myWindow.makeKeyAndOrderFront(self)
+        //窗口居中
+        self.myWindow.center()
+        //let sessionCode = NSApplication.shared.beginModalSession(for: window)
+        
+        self.myWindow.representedURL = NSURL(string: "WindowTitle") as URL?
+        self.myWindow.title = "NewWindowTitle"
+        let iconImage: NSImage = NSImage(named: "icon_background_image_0")!
+        self.myWindow.standardWindowButton(NSWindow.ButtonType.documentIconButton)?.image = iconImage
+    }
+    lazy var bugList: [LBBugModel] = {
+        var list: [LBBugModel] = []
+        for i in 0..<10 {
+            let model1: LBBugModel = LBBugModel()
+            model1.iconName = "icon_background_image_\(i)"
+            model1.name = "背景图片_\(i + 1)"
+            model1.score = 0.5
+            model1.imageName = "icon_background_image_\(i)"
+            list.append(model1)
+        }
+        return list
+    }()
+    lazy var myWindow: NSWindow = {
+        let frame = CGRect(x: 0, y: 0, width: 200, height: 200)
+        let style: UInt = (NSWindow.StyleMask.titled.rawValue | NSWindow.StyleMask.closable.rawValue | NSWindow.StyleMask.miniaturizable.rawValue | NSWindow.StyleMask.resizable.rawValue)
+        let styleMask: NSWindow.StyleMask = NSWindow.StyleMask(rawValue: style)
+        let window = NSWindow(contentRect: frame, styleMask: styleMask, backing: NSWindow.BackingStoreType.buffered, defer: true)
+        //窗口的title和icon
+        window.title = "New Create Window"
+        let iconImage: NSImage = NSImage(named: "icon_background_image_0")!
+        window.standardWindowButton(NSWindow.ButtonType.documentIconButton)?.image = iconImage
+        //Window的背景色
+        
+        return window
+    }()
     lazy var scrollView: NSScrollView = {
         let scrollView: NSScrollView = NSScrollView()
         scrollView.autoresizingMask = NSView.AutoresizingMask(rawValue: NSView.AutoresizingMask.height.rawValue | NSView.AutoresizingMask.width.rawValue)
@@ -38,26 +93,41 @@ class ViewController: NSViewController {
     }()
     lazy var tableView: NSTableView = {
         let tableView: NSTableView = NSTableView()
-        tableView.backgroundColor = .cyan
         tableView.delegate = self
         tableView.dataSource = self
         tableView.allowsColumnReordering = false
         tableView.allowsColumnResizing = false
         tableView.focusRingType = .none
-        tableView.rowHeight = 75
+        tableView.rowHeight = 60
         tableView.selectionHighlightStyle = .none
         tableView.headerView = nil
+        tableView.usesAlternatingRowBackgroundColors = true
         //一列
         let column0 = NSTableColumn(identifier: NSUserInterfaceItemIdentifier(rawValue: "examColumn0"))
         tableView.addTableColumn(column0)
         return tableView
     }()
-
+    lazy var addButton: NSButton = {
+        let button: NSButton = NSButton()
+//        button.wantsLayer = true
+        button.image = NSImage(named: NSImage.addTemplateName)
+        button.bezelStyle = .roundRect
+        button.setButtonType(.switch)
+        return button
+    }()
+    lazy var deleteButton: NSButton = {
+        let button: NSButton = NSButton()
+        button.wantsLayer = true
+        button.image = NSImage(named: NSImage.removeTemplateName)
+        button.bezelStyle = .roundRect
+        button.setButtonType(.momentaryPushIn)
+        return button
+    }()
 }
 
 extension ViewController: NSTableViewDelegate, NSTableViewDataSource {
     func numberOfRows(in tableView: NSTableView) -> Int {
-        return 10
+        return self.bugList.count
     }
     func tableView(_ tableView: NSTableView, viewFor tableColumn: NSTableColumn?, row: Int) -> NSView? {
         let identifier: NSUserInterfaceItemIdentifier = tableColumn?.identifier ?? NSUserInterfaceItemIdentifier(rawValue: "examColumn0")
@@ -65,7 +135,8 @@ extension ViewController: NSTableViewDelegate, NSTableViewDataSource {
         if cell == nil {
             cell = LBBugTableViewCell()
         }
-        cell?.title = "\(row)"
+        let bugModel: LBBugModel = self.bugList[row]
+        cell?.configBugModel(bugModel: bugModel)
         return cell
     }
 }

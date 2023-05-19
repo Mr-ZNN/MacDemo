@@ -11,7 +11,11 @@
 		0E6D4DF92A14BEB500915D27 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E6D4DF82A14BEB500915D27 /* ViewController.swift */; };
 		0E6D4DFB2A14BEB600915D27 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0E6D4DFA2A14BEB600915D27 /* Assets.xcassets */; };
 		0E6D4DFE2A14BEB600915D27 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0E6D4DFC2A14BEB600915D27 /* Main.storyboard */; };
+		0EA0D2D82A17272B00F1E0C9 /* NSImageExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EA0D2D72A17272B00F1E0C9 /* NSImageExtension.swift */; };
+		0EA0D2DB2A1775EF00F1E0C9 /* SecendViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EA0D2D92A1775EF00F1E0C9 /* SecendViewController.swift */; };
+		0EA0D2DC2A1775EF00F1E0C9 /* SecendViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0EA0D2DA2A1775EF00F1E0C9 /* SecendViewController.xib */; };
 		0ED229932A14C81700FCA7EC /* LBBugTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ED229922A14C81700FCA7EC /* LBBugTableViewCell.swift */; };
+		0ED229952A15BE8700FCA7EC /* LBBugModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ED229942A15BE8700FCA7EC /* LBBugModel.swift */; };
 		D7E36ACE4C2F045B2F1CC247 /* Pods_LBBug.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 66E39E19CBA2FCF5CAA1F500 /* Pods_LBBug.framework */; };
 /* End PBXBuildFile section */
 
@@ -22,7 +26,11 @@
 		0E6D4DFA2A14BEB600915D27 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		0E6D4DFD2A14BEB600915D27 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		0E6D4DFF2A14BEB600915D27 /* LBBug.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = LBBug.entitlements; sourceTree = "<group>"; };
+		0EA0D2D72A17272B00F1E0C9 /* NSImageExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSImageExtension.swift; sourceTree = "<group>"; };
+		0EA0D2D92A1775EF00F1E0C9 /* SecendViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecendViewController.swift; sourceTree = "<group>"; };
+		0EA0D2DA2A1775EF00F1E0C9 /* SecendViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SecendViewController.xib; sourceTree = "<group>"; };
 		0ED229922A14C81700FCA7EC /* LBBugTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LBBugTableViewCell.swift; sourceTree = "<group>"; };
+		0ED229942A15BE8700FCA7EC /* LBBugModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LBBugModel.swift; sourceTree = "<group>"; };
 		66E39E19CBA2FCF5CAA1F500 /* Pods_LBBug.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_LBBug.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7A468584F2CDF85740E21F04 /* Pods-LBBug.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LBBug.debug.xcconfig"; path = "Target Support Files/Pods-LBBug/Pods-LBBug.debug.xcconfig"; sourceTree = "<group>"; };
 		B75D347EBB2042F34C9F5EFB /* Pods-LBBug.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LBBug.release.xcconfig"; path = "Target Support Files/Pods-LBBug/Pods-LBBug.release.xcconfig"; sourceTree = "<group>"; };
@@ -67,6 +75,10 @@
 				0E6D4DFC2A14BEB600915D27 /* Main.storyboard */,
 				0E6D4DFF2A14BEB600915D27 /* LBBug.entitlements */,
 				0ED229922A14C81700FCA7EC /* LBBugTableViewCell.swift */,
+				0ED229942A15BE8700FCA7EC /* LBBugModel.swift */,
+				0EA0D2D72A17272B00F1E0C9 /* NSImageExtension.swift */,
+				0EA0D2D92A1775EF00F1E0C9 /* SecendViewController.swift */,
+				0EA0D2DA2A1775EF00F1E0C9 /* SecendViewController.xib */,
 			);
 			path = LBBug;
 			sourceTree = "<group>";
@@ -149,6 +161,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				0E6D4DFB2A14BEB600915D27 /* Assets.xcassets in Resources */,
+				0EA0D2DC2A1775EF00F1E0C9 /* SecendViewController.xib in Resources */,
 				0E6D4DFE2A14BEB600915D27 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -202,8 +215,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0EA0D2DB2A1775EF00F1E0C9 /* SecendViewController.swift in Sources */,
+				0ED229952A15BE8700FCA7EC /* LBBugModel.swift in Sources */,
 				0E6D4DF92A14BEB500915D27 /* ViewController.swift in Sources */,
 				0ED229932A14C81700FCA7EC /* LBBugTableViewCell.swift in Sources */,
+				0EA0D2D82A17272B00F1E0C9 /* NSImageExtension.swift in Sources */,
 				0E6D4DF72A14BEB500915D27 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
