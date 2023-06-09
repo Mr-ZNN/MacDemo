@@ -11,10 +11,13 @@ class ViewController: NSViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.view.window?.isRestorable = false
+        self.view.window?.center()
         self.view.window?.makeKeyAndOrderFront(self)
         self.view.wantsLayer = true
         self.view.layer?.backgroundColor = NSColor.white.cgColor
         setupUI()
+        setupConfig()
     }
     func setupUI() {
         self.view.addSubview(self.scrollView)
@@ -38,26 +41,27 @@ class ViewController: NSViewController {
             make.width.equalTo(30)
             make.height.equalTo(30)
         }
-        
-        
+    }
+    func setupConfig() {
+        NotificationCenter.default.addObserver(self, selector: #selector(windowWillClose(notification:)), name: NSWindow.willCloseNotification, object: nil)
+    }
+    @objc func windowWillClose(notification: Notification) {
+        NSApplication.shared.stopModal()
     }
     override var representedObject: Any? {
         didSet {
-        // Update the view, if already loaded.
+            //Update the view, if already loaded.
         }
     }
 
     @IBAction func addbuttonEvent(_ sender: Any) {
-        //窗口显示
+        //方法一：正常显示窗口（只能显示关闭一次，关闭后再次打开会crash）
         self.myWindow.makeKeyAndOrderFront(self)
-        //窗口居中
         self.myWindow.center()
+        //方法二：模态
+        //NSApplication.shared.runModal(for: self.myWindow)
         //let sessionCode = NSApplication.shared.beginModalSession(for: window)
         
-        self.myWindow.representedURL = NSURL(string: "WindowTitle") as URL?
-        self.myWindow.title = "NewWindowTitle"
-        let iconImage: NSImage = NSImage(named: "icon_background_image_0")!
-        self.myWindow.standardWindowButton(NSWindow.ButtonType.documentIconButton)?.image = iconImage
     }
     lazy var bugList: [LBBugModel] = {
         var list: [LBBugModel] = []
@@ -73,14 +77,29 @@ class ViewController: NSViewController {
     }()
     lazy var myWindow: NSWindow = {
         let frame = CGRect(x: 0, y: 0, width: 200, height: 200)
+        //窗口样式风格
         let style: UInt = (NSWindow.StyleMask.titled.rawValue | NSWindow.StyleMask.closable.rawValue | NSWindow.StyleMask.miniaturizable.rawValue | NSWindow.StyleMask.resizable.rawValue)
         let styleMask: NSWindow.StyleMask = NSWindow.StyleMask(rawValue: style)
         let window = NSWindow(contentRect: frame, styleMask: styleMask, backing: NSWindow.BackingStoreType.buffered, defer: true)
         //窗口的title和icon
+        window.representedURL = URL(string: "WindowTitle")
         window.title = "New Create Window"
         let iconImage: NSImage = NSImage(named: "icon_background_image_0")!
         window.standardWindowButton(NSWindow.ButtonType.documentIconButton)?.image = iconImage
         //Window的背景色
+        window.isOpaque = false
+        window.backgroundColor = NSColor.cyan
+        
+        //title区域增加视图
+        if let titleView: NSView = window.standardWindowButton(.closeButton)?.superview {
+            let button: NSButton = NSButton()
+            button.title = "Register"
+            let x = (window.contentView?.frame.size.width ?? 100) - 100
+            button.frame = NSRect(x: x, y: 0, width: 80, height: 24)
+            button.bezelStyle = .rounded
+            button.tag = 100
+            titleView.addSubview(button)
+        }
         
         return window
     }()

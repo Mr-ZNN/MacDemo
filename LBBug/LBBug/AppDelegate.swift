@@ -22,7 +22,15 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     func applicationSupportsSecureRestorableState(_ app: NSApplication) -> Bool {
         return true
     }
-
+    //关闭最后一个window或者应用唯一一个window时退出
+//    func applicationShouldTerminateAfterLastWindowClosed(_ sender: NSApplication) -> Bool {
+//        return true
+//    }
+    //应用关闭后，点击dock菜单再次打开应用
+    func applicationShouldHandleReopen(_ sender: NSApplication, hasVisibleWindows flag: Bool) -> Bool {
+        //self.window?.makeKeyAndOrderFront(self)
+        return true
+    }
 
 }
 
